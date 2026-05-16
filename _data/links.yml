@@ -22,6 +22,9 @@
   text: Telegram Updates
   icon: telegram
   button: telegram
+- url: https://bsky.app/profile/puzzledpintberlin.bsky.social
+  text: Bluesky
+  icon: bluesky
 
 - url: https://github.com/PuzzledPintBerlin
   text: GitHub
