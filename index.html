@@ -1,0 +1,52 @@
+---
+layout: default
+title: Puzzled Pint Bangalore
+---
+<div class="container">
+    <div class="row">
+      <div class="column" style="margin-top: 10%">
+        <img src="images/favicon.png" class="avatar" alt="">
+        <h1 role="heading">{{site.title}}</h1>
+        {% assign currentEvent = site.data.events.last %}
+        {% assign lastDate = currentEvent.date | date:"%Y-%m-%d" %} {% assign today = site.time | date:"%Y-%m-%d" %}
+        <p>{{site.description}} Next event at <b>{{currentEvent.date | date:"%d %B"}}</b></p>
+
+
+
+        <p></p>
+
+
+
+        <!-- TODO: Need better label -->
+        <a class="button button-default" href="/standings/" role=button>
+          🏆 All Months Leaderboard
+        </a>
+
+        {% if lastDate==today %}
+        <a class="button button-default" href='/standings/{{ currentEvent.date | date: "%Y-%m" }}/' role="button">🏅 Leaderboard {{currentEvent.date | date:"%B %Y"}}</a><br>
+        {% endif %}
+
+        <a class="button button-default" href='/teams/' role="button">📊 Teams</a><br>
+
+        {% for link in site.data.links %}
+        <a class="button button-{{link.button}}" href="{{link.url}}" target=_blank rel=noopener role=button>
+            <img class=icon src=/images/icons/{{link.icon}}.svg alt="icon for {{link.icon}}">
+            {{link.text}}
+        </a><br>
+        {% endfor %}
+
+        <a class="button button-mailchimp" href="javascript:void(0)" onclick="ml('show', 'j4I4TK', true)" role="button">
+            <img class="icon" src="/images/icons/email.svg" alt="icon for email">Reminder Email</a>
+
+      </div>
+    </div>
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2353671');
+</script>
+<!-- End MailerLite Universal -->
+  </div>

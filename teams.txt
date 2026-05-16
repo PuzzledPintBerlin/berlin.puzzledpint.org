@@ -1,0 +1,5 @@
+---
+---
+{% assign teams = site.data.teams | sort: 'name' %}
+{% for t in teams %}{{t.name|slugify}}
+{% endfor %}

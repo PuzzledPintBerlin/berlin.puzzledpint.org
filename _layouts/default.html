@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  {%capture title %}{{page.title}}{% if page.url!="/" %} | Puzzled Pint Berlin {%endif%}{%endcapture%}
+  <title>{{title}}</title>
+  <meta name="description" content="{{site.description}}">
+  <meta name="author" content="{{site.author}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/skeleton-auto.css">
+  <link rel="stylesheet" href="/css/brands.css">
+
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <meta property="og:url" content="{{page.url|absolute_url}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{site.description}}">
+  {% if page.event.date %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="berlin.puzzledpint.com">
+  <meta property="og:image" content='{{ "/images/events/" | append:page.event.date|append:".jpg" | absolute_url }}'>
+  {% endif %}
+
+
+</head>
+
+<body>
+  {{content}}
+</body>
+
+</html>

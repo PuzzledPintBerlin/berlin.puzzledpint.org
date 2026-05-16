@@ -1,0 +1,105 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/9.1.2/bignumber.min.js" integrity="sha512-9JMv6qShmz4L6iAvMaEoIaFtS4XGSk/jeTSR2vzieg0XS5njYvBvYk0YcvI59dLN/0B+QnG5HfGR+Mqubl78SA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="/rusha.min.js"></script>
+<script>
+// Only run this on current month
+var colors =  {{site.data.colors | jsonify}}
+function slug(text) {
+    return text.replaceAll(/[^0-9a-zA-Z]+/g, '-').toLowerCase();
+}
+function hashToIndex(text) {
+    const rusha = new Rusha();
+    let t = slug(text);
+    hashHex = rusha.digest(t);
+    const hashInt = new BigNumber(hashHex, 16);
+    const mod16 = hashInt.mod(colors.length);
+    console.log(`${t}:${hashInt}:${mod16.toNumber()}`)
+    return mod16.toNumber();
+}
+
+// MAY 2024
+Papa.parse("{{include.sheetURL}}", {
+    download: true,
+    header: true,
+    complete: function (results, file) {
+    const leaderboard = results.data.filter(function (row) {
+        if (row["Team Name"] == "")
+        return false;
+        else
+        return true
+    }).map(function (row) {
+
+        return {
+        name: row["Team Name"],
+        size: row["Team Size"],
+        time: row["Start Time"],
+        end: row["End Time"],
+        duration: row["Time"]
+        }
+    })
+
+    // target the table element in which to add one div for each team
+    const main = d3.select("table");
+
+    // for each team add one table row
+    // ! add a class to the row to differentiate the rows from the existing one
+    // otherwise the select method would target the existing one and include one row less than the required amount
+    const teams = main
+        .selectAll("tr.team")
+        .data(leaderboard)
+        .enter()
+        .append("tr")
+        .attr("class", "team");
+
+    // in each row add the information specified by the dataset in td elements
+    // specify a class to style the elements differently with CSS
+
+    // position using the index of the data points
+    teams
+        .append("td")
+        .text((d, i) => i + 1)
+        .attr("class", "position");
+
+    // name followed by the team
+    teams
+        .append("td")
+        // include the last name in a separate element to style it differently
+        // include the team also in another element for the same reason
+        .html(({ name, size }) => `<a href="/teams/${slug(name)}/">${name}</a> <span>${size} players</span>`)
+
+        .attr("class", ({name}) => {
+            return `team color-${hashToIndex(name)}`;
+        });
+
+    // time
+    teams
+        .append("td")
+        .attr("class", "time")
+        .append("span")
+        .text(({ time }) => {
+        if (time.toLowerCase() == "dnf") {
+            return time;
+        }
+        return `${time}pm`;
+        });
+    // end
+    teams
+        .append("td")
+        .attr("class", ({ duration }) => {
+        if (duration.toLowerCase() == "dnf") {
+            return "";
+        }
+        return `time`;
+        })
+        .append("span")
+        .text(({ duration }) => {
+        if (duration.toLowerCase() == "dnf") {
+            return "-";
+        }
+        return `${duration.replace(":","h")}m`;
+        });
+    }
+})
+
+</script>

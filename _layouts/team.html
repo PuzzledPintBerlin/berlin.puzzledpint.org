@@ -1,0 +1,74 @@
+---
+layout: default
+---
+{% include color-style.html %}
+<div class="container">
+    <div class="row">
+      <div class="column" style="margin-top: 10%; margin-bottom: 10%">
+
+        <a href="/"><img src="/images/favicon.png" class="avatar" alt="Puzzled Pint Berlin Logo" /></a>
+
+        <h2 role="heading" class="color-{{page.team.color_index}}-wide">{{page.team.name | escape}}</h2>
+        <div>
+          {% for B in page.team.badges %}
+            <a style="display: inline-block; min-width: 32px; padding: 5px; border-radius: 3px; border: 1px dashed grey; font-size: 30px; text-decoration: none" title="{{site.data.badge_mapping[B].name}}: {{site.data.badge_mapping[B].description}}" href="/badges/{{B}}">{{site.data.badge_mapping[B].emoji}}</a>
+
+          {% endfor %}
+          {% if page.team.streak > 3 %}
+            <br>Longest <span title="Months attended in a row without a break">Streak</span>: {{page.team.streak}} months.
+            {% endif %}
+        </div>
+        <table>
+          <tr>
+            <th>Event</th>
+            <th>Players</th>
+            <th>Solve Time</th>
+          </tr>
+            {% assign rows = page.team.results |reverse %}
+            {% for row in rows %}
+            <tr>
+                <td class=team style="text-align: left;">
+                    <a href='/standings/{{row.event|date:"%Y-%m"}}/'>{{row.event | date:"%B %Y"}}</a>
+                    <span>{{site.data.event_mapping[row.event].theme}}</span>
+                </td>
+                <td><span class=subtle>{{row.players}} Players</span>
+                    {% case row.rank %}
+                    {% when 1 %}
+                      | <span title="Fastest Team">🥇</span>
+                    {% when 2 %}
+                      | <span title="Second-fastest Team">🥈</span>
+                    {% when 3 %}
+                      | <span title="Third-fastest Team">🥉</span>
+                    {% else %}
+
+                    {% if row.solved %}
+                      | <span title="Ranked {{row.rank}}{{row.rank | ordinal}}">{{row.rank}}{{row.rank | ordinal}}</span>
+                    {% endif %}
+                    {% endcase %}
+                    
+                </td>
+                <td class="time">
+                    {% if row.solved %}
+                    <span>{{row.duration | duration_to_string}}</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+      </div>
+    </div>
+
+    <small>Team Slug: {{page.team.slug}}</small>
+    <br>
+    <small>
+    {% assign aliases = site.data.aliases | where: "slug",page.team.slug %}
+    {% if aliases.size > 0 %}
+    The team is known by the following aliases: 
+    {% for i in aliases %}
+    <br>- {{i.name | escape}} {%if i.event%}({{i.event}}){%endif%}
+    {% endfor %}
+    {% endif %}
+    </small>
+</div>
+

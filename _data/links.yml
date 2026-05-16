@@ -1,0 +1,29 @@
+- url: https://chat.whatsapp.com/TBD
+  icon: whatsapp
+  text: Join WhatsApp Group (Updates)
+  button: whatsapp
+  
+- url: https://puzzledpint.com/puzzles/
+  icon: generic-website
+  text: Puzzle Archives
+  button: default
+
+- url: https://puzzledpint.com/resources/
+  icon: read-cv
+  text: Puzzle Solving Resources
+  button: amazon
+
+- url: https://www.instagram.com/puzzled_pint_berlin/
+  icon: instagram
+  text: "@puzzled_pint_berlin"
+  button: instagram
+
+- url: https://t.me/+ewSK2ap6xtJjNmY1
+  text: Telegram Updates
+  icon: telegram
+  button: telegram
+
+- url: https://github.com/PuzzledPintBerlin
+  text: GitHub
+  button: github
+  icon: github

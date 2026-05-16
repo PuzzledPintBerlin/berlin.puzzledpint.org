@@ -1,0 +1,65 @@
+---
+layout: default
+title: All Teams
+permalink: /teams/
+---
+
+{% include color-style.html %}
+<div class="container">
+    <div class="row">
+        <div class="column" style="margin-top: 10%; margin-bottom: 10%">
+            <a href="/"
+                ><img
+                    src="/images/favicon.png"
+                    class="avatar"
+                    alt="Puzzled Pint Bangalore Logo"
+            /></a>
+
+            <h2 role="heading">Teams</h2>
+            <table>
+                <tr>
+                    <th>Team</th>
+                    <th>Last Appearance</th>
+                    <th>Event</th>
+                    <th>Appearances</th>
+                </tr>
+                {% assign idx=1 %} {% for row in site.data.teams %} {% if
+                row.results.size >= 0 %}
+                <tr>
+                    {%else %}
+                </tr>
+
+                <tr style="display: none">
+                    {%endif%}
+
+                    <td
+                        style="text-align: left"
+                        class="color-{{row.color_index}}"
+                        data-slug="{{row.slug}}"
+                    >
+                        <a href="/teams/{{row.slug}}/">{{row.name | escape}}</a>
+                    </td>
+
+                    <td class="time">
+                        {% if row.results.last.solved %}
+                        <span
+                            >{{row.results.last.duration |
+                            duration_to_string}}</span
+                        >
+                        {% endif %}
+                    </td>
+                    <td style="font-size: smaller">
+                        <a
+                            href='/standings/{{row.results.last.event | date: "%Y-%m"}}/'
+                        >
+                            {{row.results.last.event | date:"%b %y"}}
+                        </a>
+                    </td>
+                    <td>{{row.results.size}}</td>
+                </tr>
+
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>

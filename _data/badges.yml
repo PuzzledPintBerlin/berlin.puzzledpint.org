@@ -1,0 +1,12 @@
+- id: sub-1h
+  name: Sub 1h
+  description: Finished a puzzle set in less than an hour
+  emoji: ⏲️
+- id: has-alias
+  name: Secret Identity
+  description: Participated with a different team name
+  emoji: 🦸
+- id: marine
+  name: Mariner
+  description: Attend a Marine themed puzzle
+  emoji: 🌊

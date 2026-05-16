@@ -1,0 +1,69 @@
+---
+permalink: /standings/
+title: Standings
+layout: default
+---
+{% include color-style.html %}
+
+<div class="container">
+    <div class="row">
+      <div class="column" style="margin-top: 10%; margin-bottom: 10%">
+
+        <a href="/"><img src="/images/favicon.png" class="avatar" alt="Puzzled Pint Bangalore Logo" /></a>
+
+        <h2 role="heading">Events</h2>
+        <table>
+            <tr>
+                <th>Event</th>
+                <th>Theme</th>
+                <th>Attendees</th>
+                <th>Fastest Team</th>
+                <th>Time</th>
+            </tr>
+            
+            {% assign events =  site.data.events | reverse %}
+            {% for row in events %}
+            {% assign attendees = 0 %}
+
+            {% assign month_results = site.data.results | where: "Date", row.date %}
+            {% for r in month_results %}
+                {% assign attendees = attendees | plus: r['Team Size'] %}
+                
+            {% endfor %}
+            
+            <tr>
+                <td>
+                    <a href='/standings/{{row.date|date:"%Y-%m"}}/' title='Standings for {{row.date|date:"%B %Y"}}'>
+                        {{row.date|date:"%B %Y"}}
+                    </a>
+                </td>
+                <td class=subtle>{{row.theme}}</td>
+                
+                {% if row.sheetURL %}
+                <td colspan=3 class=time><span style="min-width: 250px;display: inline-block;">LIVE</span></td>
+                {% elsif attendees == 0 %}
+                <td colspan=3>
+                    <!-- TODO: Change to a simpler JS based countdown -->
+                    <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/en/#{{row.date}}T18:30:00@Asia%2FKolkata" width="300" height="60" style="display: block; margin: 0px auto; border: 0px;"></iframe>
+                </td>
+                {% else %}
+
+                <td><span>{{attendees}}</span></td>
+                {% assign top_team = month_results.first %}
+                <td class="team color-{{month_results.first.color_index}}">
+                    <a href="/teams/{{top_team.slug}}/" title="Team Page for {{top_team['Team Name'] | escape}}">
+                        {{top_team['Team Name'] | escape}}
+                    </a>
+                </td>
+                <td class=time>
+                    {% if top_team.solved %}
+                    <span>{{top_team.duration | duration_to_string}}</span>
+                    {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+
+      </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+/* TEAM */
+	Game Control: Anika, Nemo
+
+	Developer:
+	Contact: https://captnemo.in/contact/
+	Fediverse: @nemo@recurse.social
+
+
+/* SITE */
+	Last update: {{ site.time | date: '%A, %B %e, %Y' }}
+	Tools: Jekyll
+	Host: GitHub Pages
