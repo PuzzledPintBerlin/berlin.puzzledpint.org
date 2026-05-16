@@ -25,7 +25,7 @@
 - url: https://bsky.app/profile/puzzledpintberlin.bsky.social
   text: Bluesky
   icon: bluesky
-
+  button: bluesky
 - url: https://github.com/PuzzledPintBerlin
   text: GitHub
   button: github
