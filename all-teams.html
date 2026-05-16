@@ -8,9 +8,9 @@ permalink: /teams/
 <div class="container">
     <div class="row">
         <div class="column" style="margin-top: 10%; margin-bottom: 10%">
-            <a href="/"
+            <a href="{{ '/' | relative_url }}"
                 ><img
-                    src="/images/favicon.png"
+                    src="{{ '/images/favicon.png' | relative_url }}"
                     class="avatar"
                     alt="Puzzled Pint Bangalore Logo"
             /></a>
@@ -37,7 +37,7 @@ permalink: /teams/
                         class="color-{{row.color_index}}"
                         data-slug="{{row.slug}}"
                     >
-                        <a href="/teams/{{row.slug}}/">{{row.name | escape}}</a>
+                        <a href="{{ row.slug | prepend: '/teams/' | append: '/' | relative_url }}">{{row.name | escape}}</a>
                     </td>
 
                     <td class="time">
@@ -50,7 +50,7 @@ permalink: /teams/
                     </td>
                     <td style="font-size: smaller">
                         <a
-                            href='/standings/{{row.results.last.event | date: "%Y-%m"}}/'
+                            href='{{ row.results.last.event | date: "%Y-%m" | prepend: "/standings/" | append: "/" | relative_url }}'
                         >
                             {{row.results.last.event | date:"%b %y"}}
                         </a>

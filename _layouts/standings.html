@@ -7,7 +7,7 @@ layout: default
     <div class="row">
       <div class="column" style="margin-top: 10%; margin-bottom: 10%">
 
-        <a href="/"><img src="/images/favicon.png" class="avatar" alt="Puzzled Pint Bangalore Logo" /></a>
+        <a href="{{ '/' | relative_url }}"><img src="{{ '/images/favicon.png' | relative_url }}" class="avatar" alt="Puzzled Pint Bangalore Logo" /></a>
 
         <h2 role="heading">{{page.event.date | date:"%B %Y"}} Teams</h2>
         <h4><a style="color: #76316e" href='https://puzzledpint.com/events/{{page.event.date|date:"%B-%Y" | downcase}}/'>{{page.event.theme}}</a></h4>
@@ -28,7 +28,7 @@ layout: default
                 <td>{{idx}}</td>
                 
                 <td class="team color-{{row.color_index}}" data-slug="{{row.slug}}">
-                    <a href="/teams/{{row.slug}}/">{{row['Team Name'] | escape}}</a>
+                    <a href="{{ '/teams/' | append: row.slug | append: '/' | relative_url }}">{{row['Team Name'] | escape}}</a>
                     <span>{{row['Team Size']}} Players</span>
                 </td>
                 <td class="time">

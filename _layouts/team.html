@@ -6,12 +6,12 @@ layout: default
     <div class="row">
       <div class="column" style="margin-top: 10%; margin-bottom: 10%">
 
-        <a href="/"><img src="/images/favicon.png" class="avatar" alt="Puzzled Pint Berlin Logo" /></a>
+        <a href="{{ '/' | relative_url }}"><img src="{{ '/images/favicon.png' | relative_url }}" class="avatar" alt="Puzzled Pint Berlin Logo" /></a>
 
         <h2 role="heading" class="color-{{page.team.color_index}}-wide">{{page.team.name | escape}}</h2>
         <div>
           {% for B in page.team.badges %}
-            <a style="display: inline-block; min-width: 32px; padding: 5px; border-radius: 3px; border: 1px dashed grey; font-size: 30px; text-decoration: none" title="{{site.data.badge_mapping[B].name}}: {{site.data.badge_mapping[B].description}}" href="/badges/{{B}}">{{site.data.badge_mapping[B].emoji}}</a>
+            <a style="display: inline-block; min-width: 32px; padding: 5px; border-radius: 3px; border: 1px dashed grey; font-size: 30px; text-decoration: none" title="{{site.data.badge_mapping[B].name}}: {{site.data.badge_mapping[B].description}}" href="{{ '/badges/' | append: B | relative_url }}">{{site.data.badge_mapping[B].emoji}}</a>
 
           {% endfor %}
           {% if page.team.streak > 3 %}
@@ -28,7 +28,7 @@ layout: default
             {% for row in rows %}
             <tr>
                 <td class=team style="text-align: left;">
-                    <a href='/standings/{{row.event|date:"%Y-%m"}}/'>{{row.event | date:"%B %Y"}}</a>
+                    <a href='{{ row.event | date: "%Y-%m" | prepend: "/standings/" | append: "/" | relative_url }}'>{{row.event | date:"%B %Y"}}</a>
                     <span>{{site.data.event_mapping[row.event].theme}}</span>
                 </td>
                 <td><span class=subtle>{{row.players}} Players</span>

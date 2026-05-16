@@ -5,7 +5,7 @@ title: Puzzled Pint Bangalore
 <div class="container">
     <div class="row">
       <div class="column" style="margin-top: 10%">
-        <img src="images/favicon.png" class="avatar" alt="">
+        <img src="{{ '/images/favicon.png' | relative_url }}" class="avatar" alt="">
         <h1 role="heading">{{site.title}}</h1>
         {% assign currentEvent = site.data.events.last %}
         {% assign lastDate = currentEvent.date | date:"%Y-%m-%d" %} {% assign today = site.time | date:"%Y-%m-%d" %}
@@ -18,25 +18,25 @@ title: Puzzled Pint Bangalore
 
 
         <!-- TODO: Need better label -->
-        <a class="button button-default" href="/standings/" role=button>
+        <a class="button button-default" href="{{ '/standings/' | relative_url }}" role=button>
           🏆 All Months Leaderboard
         </a>
 
         {% if lastDate==today %}
-        <a class="button button-default" href='/standings/{{ currentEvent.date | date: "%Y-%m" }}/' role="button">🏅 Leaderboard {{currentEvent.date | date:"%B %Y"}}</a><br>
+        <a class="button button-default" href='{{ currentEvent.date | date: "%Y-%m" | prepend: "/standings/" | append: "/" | relative_url }}' role="button">🏅 Leaderboard {{currentEvent.date | date:"%B %Y"}}</a><br>
         {% endif %}
 
-        <a class="button button-default" href='/teams/' role="button">📊 Teams</a><br>
+        <a class="button button-default" href='{{ "/teams/" | relative_url }}' role="button">📊 Teams</a><br>
 
         {% for link in site.data.links %}
         <a class="button button-{{link.button}}" href="{{link.url}}" target=_blank rel=noopener role=button>
-            <img class=icon src=/images/icons/{{link.icon}}.svg alt="icon for {{link.icon}}">
+            <img class=icon src="{{ link.icon | prepend: '/images/icons/' | append: '.svg' | relative_url }}" alt="icon for {{link.icon}}">
             {{link.text}}
         </a><br>
         {% endfor %}
 
         <a class="button button-mailchimp" href="javascript:void(0)" onclick="ml('show', 'j4I4TK', true)" role="button">
-            <img class="icon" src="/images/icons/email.svg" alt="icon for email">Reminder Email</a>
+            <img class="icon" src="{{ '/images/icons/email.svg' | relative_url }}" alt="icon for email">Reminder Email</a>
 
       </div>
     </div>

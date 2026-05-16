@@ -1,7 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/9.1.2/bignumber.min.js" integrity="sha512-9JMv6qShmz4L6iAvMaEoIaFtS4XGSk/jeTSR2vzieg0XS5njYvBvYk0YcvI59dLN/0B+QnG5HfGR+Mqubl78SA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-<script src="/rusha.min.js"></script>
+<script src="{{ '/rusha.min.js' | relative_url }}"></script>
 <script>
 // Only run this on current month
 var colors =  {{site.data.colors | jsonify}}
@@ -66,7 +66,7 @@ Papa.parse("{{include.sheetURL}}", {
         .append("td")
         // include the last name in a separate element to style it differently
         // include the team also in another element for the same reason
-        .html(({ name, size }) => `<a href="/teams/${slug(name)}/">${name}</a> <span>${size} players</span>`)
+        .html(({ name, size }) => `<a href="{{ '/teams' | relative_url }}/${slug(name)}/">${name}</a> <span>${size} players</span>`)
 
         .attr("class", ({name}) => {
             return `team color-${hashToIndex(name)}`;

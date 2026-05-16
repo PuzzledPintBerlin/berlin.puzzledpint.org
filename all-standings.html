@@ -9,7 +9,7 @@ layout: default
     <div class="row">
       <div class="column" style="margin-top: 10%; margin-bottom: 10%">
 
-        <a href="/"><img src="/images/favicon.png" class="avatar" alt="Puzzled Pint Bangalore Logo" /></a>
+        <a href="{{ '/' | relative_url }}"><img src="{{ '/images/favicon.png' | relative_url }}" class="avatar" alt="Puzzled Pint Bangalore Logo" /></a>
 
         <h2 role="heading">Events</h2>
         <table>
@@ -33,7 +33,7 @@ layout: default
             
             <tr>
                 <td>
-                    <a href='/standings/{{row.date|date:"%Y-%m"}}/' title='Standings for {{row.date|date:"%B %Y"}}'>
+                    <a href='{{ row.date | date: "%Y-%m" | prepend: "/standings/" | append: "/" | relative_url }}' title='Standings for {{row.date|date:"%B %Y"}}'>
                         {{row.date|date:"%B %Y"}}
                     </a>
                 </td>
@@ -51,7 +51,7 @@ layout: default
                 <td><span>{{attendees}}</span></td>
                 {% assign top_team = month_results.first %}
                 <td class="team color-{{month_results.first.color_index}}">
-                    <a href="/teams/{{top_team.slug}}/" title="Team Page for {{top_team['Team Name'] | escape}}">
+                    <a href="{{ top_team.slug | prepend: '/teams/' | append: '/' | relative_url }}" title="Team Page for {{top_team['Team Name'] | escape}}">
                         {{top_team['Team Name'] | escape}}
                     </a>
                 </td>

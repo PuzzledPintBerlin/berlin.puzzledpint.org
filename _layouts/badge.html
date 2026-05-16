@@ -7,7 +7,7 @@ layout: default
     <div class="row">
       <div class="column" style="margin-top: 10%; margin-bottom: 10%">
 
-        <a href="/"><img src="/images/favicon.png" class="avatar" alt="Puzzled Pint Bangalore Logo" /></a>
+        <a href="{{ '/' | relative_url }}"><img src="{{ '/images/favicon.png' | relative_url }}" class="avatar" alt="Puzzled Pint Bangalore Logo" /></a>
 
         <h2 role="heading">{{page.badge.name}} {{page.badge.emoji}}</h2>
         <p>{{page.badge.description}}</p>
@@ -19,7 +19,7 @@ layout: default
             {% if t.badges contains B %}
             <tr>
                 <td class="team color-{{t.color_index}}" data-slug="{{t.slug}}">
-                    <a href="/teams/{{t.slug}}/">{{t.name | escape}}</a>
+                    <a href="{{ '/teams/' | append: t.slug | append: '/' | relative_url }}">{{t.name | escape}}</a>
                 </td>
             </tr>
             {% endif %}
