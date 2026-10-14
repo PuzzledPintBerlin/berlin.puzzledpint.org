@@ -18,7 +18,17 @@ title: Puzzled Pint Bangalore
         <h1 role="heading">{{site.title}}</h1>
         {% assign currentEvent = site.data.events.last %}
         {% assign lastDate = currentEvent.date | date:"%Y-%m-%d" %} {% assign today = site.time | date:"%Y-%m-%d" %}
-        <p>{{site.description}} Next event at <b>{{currentEvent.date | date:"%d %B"}}</b></p>
+        {% assign y = site.time | date: "%Y" | plus: 0 %}{% assign m = site.time | date: "%m" | plus: 0 %}{% assign d = site.time | date: "%d" | plus: 0 %}
+        {% for i in (1..2) %}
+          {% assign mm = m | prepend: "0" | slice: -2, 2 %}
+          {% assign wday = y | append: "-" | append: mm | append: "-01" | date: "%w" | plus: 0 %}
+          {% assign nextDay = 9 | minus: wday | modulo: 7 | plus: 8 %}
+          {% if d <= nextDay %}{% break %}{% endif %}
+          {% assign d = 0 %}{% assign m = m | plus: 1 %}
+          {% if m > 12 %}{% assign m = 1 %}{% assign y = y | plus: 1 %}{% endif %}
+        {% endfor %}
+        {% assign nextEvent = y | append: "-" | append: mm | append: "-" | append: nextDay %}
+        <p>{{site.description}} Next event at <b>{{nextEvent | date:"%d %B"}}</b></p>
 
 
 

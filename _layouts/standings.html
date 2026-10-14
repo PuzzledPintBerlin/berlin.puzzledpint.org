@@ -10,7 +10,7 @@ layout: default
         <a href="{{ '/' | relative_url }}"><img src="{{ '/images/favicon.png' | relative_url }}" class="avatar" alt="Puzzled Pint Bangalore Logo" /></a>
 
         <h2 role="heading">{{page.event.date | date:"%B %Y"}} Teams</h2>
-        <h4><a style="color: #76316e" href='https://puzzledpint.com/events/{{page.event.date|date:"%B-%Y" | downcase}}/'>{{page.event.theme}}</a></h4>
+        <h4><a style="color: #76316e" href='https://puzzledpint.org/events/{{page.event.date|date:"%B-%Y" | downcase}}/'>{{page.event.theme}}</a></h4>
         {% assign rows = site.data.results | where: "Date", page.event.date %}
         {% if rows.size > 0 or page.event.sheetURL %}
         <table id=standings>

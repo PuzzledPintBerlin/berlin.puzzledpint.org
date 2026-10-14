@@ -3,12 +3,12 @@
   text: Join WhatsApp Group (Updates)
   button: whatsapp
   
-- url: https://puzzledpint.com/puzzles/
+- url: https://puzzledpint.org/events/
   icon: generic-website
   text: Puzzle Archives
   button: default
 
-- url: https://puzzledpint.com/resources/
+- url: https://puzzledpint.org/resources/
   icon: read-cv
   text: Puzzle Solving Resources
   button: amazon
