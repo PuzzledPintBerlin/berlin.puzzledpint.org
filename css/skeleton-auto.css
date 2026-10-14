@@ -222,7 +222,7 @@ hr {
   height: 128px;
   object-fit: cover;
   background-position: center;
-  border-radius: 50%;
+  border-radius: 0;
 }
 
 /* design based on this codepen - https://codepen.io/borntofrappe/pen/ZZaaOe */
