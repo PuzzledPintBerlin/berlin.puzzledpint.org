@@ -1,2 +1,7 @@
 vendor/
 _site
+__pycache__/
+images/bear/*
+!images/bear/centre/
+images/bear/centre/*
+!images/bear/centre/logo.png
