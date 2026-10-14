@@ -6,6 +6,7 @@ Jigsaw Buddy Bear logo for Puzzled Pint Berlin, generated with code.
 uv run _logo/bear.py            # writes SVGs to images/bear/
 for f in $(find images/bear -name '*.svg'); do rsvg-convert -w 1024 "$f" -o "${f%.svg}.png"; done
 uv run _logo/sheet.py images/bear logo-options.pdf   # contact sheet
+uv run _logo/favicon.py         # 16x16 pixel jigsaw: favicon.ico, images/favicon-16.png
 ```
 
 Output: `images/bear/<layout>/` for layouts `pint`, `centre` and `bottom`,
