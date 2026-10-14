@@ -3,8 +3,8 @@ author: Puzzled Pint Berlin GC
 description: >-
   A casual event for puzzle lovers on the second Tuesday of every month. Berlin Chapter of
   Puzzled Pint.
-# url: "https://berlin.puzzzledpint.com"
-baseurl: "/berlin.puzzledpint.com"
+url: "https://berlin.puzzledpint.org"
+baseurl: ""
 
 # Add .well-known folder to built site
 include: [".well-known"]

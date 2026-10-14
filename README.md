@@ -1,4 +1,4 @@
-# berlin.puzzledpint.com
+# berlin.puzzledpint.org
 
 Basic website for the Puzzled Pint Berlin Chapter.
 
